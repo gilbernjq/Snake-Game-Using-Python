@@ -4,5 +4,4 @@
 2. Implement a suitable code control for the functioning of the game.
 3. Choose an advanced way of interface between the player and the program for inputs.
 4. Visualizing the game with simple ANSI escape codes.
-5. testing and debugging the code.
-6. Further development (animation with pygame may be a choice).
+5. testing and fixing the code.
