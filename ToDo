@@ -6,10 +6,12 @@ To test game run test.py
     Making a game frame ~ Done!
     Snake body ~ Done! 
     Food creation ~ Done!
-    Pause with letter (p) ~ Done!
+    Make Up,Down, Left and Right control the snake ~ Done!
+    
     
 2. Implement a suitable code control for the functioning of the game:
-     Make Up,Down, Left and Right control the snake ~ Done! 
+     Create a function to make snake move? ~ Done
+     Pause with letter (p) ~ Done!
      Ramdon location for food ~ Done!
      Make the food disappear when eaten ~ Pending
      Make snake grow when eats the food ~ Pending
