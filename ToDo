@@ -11,10 +11,12 @@ To test game run test.py
 2. Implement a suitable code control for the functioning of the game:
      Make Up,Down, Left and Right control the snake ~ Done! 
      Ramdon location for food ~ Done!
-     Create parameters for game frame ~ Pending
+     Make the food disappear when eaten ~ Pending
      Make snake grow when eats the food ~ Pending
+     Create parameters (portals) for game frame ~ Pending
+     Create obstacles for the snake including the body itself ~ Pending
   
 
 3. Choose an advanced way of interface between the player and the program for inputs.
-4. Visualizing the game with simple ANSI escape codes.
-5. testing and fixing the code.
+
+4. testing and fixing the code.
