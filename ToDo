@@ -1,5 +1,7 @@
 ## Milestones
 
+To test game run test.py
+
 1. Choose a suitable data structure for data storage and manipulation:
     Making a game frame ~ Done!
     Snake body ~ Done! 
