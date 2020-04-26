@@ -13,9 +13,9 @@ To test game run test.py
      Create a function to make snake move? ~ Done
      Pause with letter (p) ~ Done!
      Ramdon location for food ~ Done!
-     Make the food disappear when eaten ~ Pending
-     Make snake grow when eats the food ~ Pending
-     Create parameters (portals) for game frame ~ Pending
+     Make the food disappear when eaten ~ Done!
+     Make snake grow when eats the food ~ Done!
+     Create parameters (portals) for game frame ~ Done!
      Create obstacles for the snake including the body itself ~ Pending
   
 
