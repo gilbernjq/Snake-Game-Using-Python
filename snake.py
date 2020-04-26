@@ -1,5 +1,10 @@
 PART_SIZE=10  # size of each body part, a square of side PART_SIZE, in pixels
-BETWEEN_PARTS=0 # distance between body parts in pixels
+
+FRAME_WIDTH=800
+
+FRAME_HEIGHT=600
+
+SPEED_INCREMENT=1
 class snake:
     """Class representing a snake in the Snake-Game."""
     def __init__(self,initial_speed,initial_orientation,body_parts):
@@ -28,19 +33,23 @@ class snake:
         """Returns the new head position of the snake, based on the current orientation (Under construction)"""
 
         # the shift in coordinates for a new head
-        shift=PART_SIZE+BETWEEN_PARTS
+        shift=PART_SIZE
 
         #get the head coordinates
         head=self.body[-1]
         
         if self.orientation=='R':
-            return (head[0]+shift,head[1])
+            new_head= (head[0]+shift,head[1])
         if self.orientation=='L':
-            return (head[0]-shift,head[1])
+            new_head= (head[0]-shift,head[1])
         if self.orientation=='U':
-            return (head[0],head[1]-shift)
+            new_head= (head[0],head[1]-shift)
         if self.orientation=='D':
-            return (head[0],head[1]+shift)
+            new_head= (head[0],head[1]+shift)
+
+        new_head=((new_head[0]+FRAME_WIDTH)%FRAME_WIDTH,(new_head[1]+FRAME_HEIGHT)%FRAME_HEIGHT)
+
+        return new_head
         
     def move(self):
         """Performs movement of a single step of the snake, by inserting the new head and poping the tail (Under construction)"""
@@ -53,5 +62,11 @@ class snake:
 
         # append the new head
         self.body.append(new_head)
-    
-   
+
+    def grow(self):
+
+        new_head=self.get_new_head()
+
+        self.body.append(new_head)
+
+        self.speed+=SPEED_INCREMENT
