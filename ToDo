@@ -23,6 +23,7 @@ To test game run test.py
 3. Choose an advanced way of interface between the player and the program for inputs.
      Choice of different board ~ Pending
      Ask user if want to play with obstacles ~ Pending
+     Ask the user to make a custom board ~ Pending
      Choice of dificulty (speed increment and ammount of obstacles ~ Pending
 
 4. Bugs to Fix.
