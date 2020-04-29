@@ -1,8 +1,8 @@
 import pygame
 from random import choice
+import time
 
-
-INITIAL_SPEED=20
+INITIAL_SPEED=15
 
 FRAME_WIDTH=800
 
@@ -19,6 +19,7 @@ class playground:
     def __init__(self,snake):
         """
         Initializing the enviroment.
+        Args:
         snake: snake object.
         """
         pygame.init()
@@ -28,13 +29,14 @@ class playground:
         self.snake=snake
         self.score=len(snake.body)
         
-        # initialize a variable for storing current time. Will be used to animate the snake's speed.
+        # initialize a variable for storing current time. Will be used to
+        # animate the snake's speed.
         
         self.time=pygame.time.get_ticks()
         self.start_time=self.time
         self.block_image = pygame.image.load(BLOCK_IMAGE)
         self.food_image=pygame.image.load(FOOD_IMAGE)
-        
+        self.hit_block=None
         self.generate_food()
 
         # initiate the variable holding the display object; used for displaying
@@ -50,16 +52,16 @@ class playground:
     def generate_food(self):
         """Generates a random valid block as a food portion."""
 
-        # initiate an empty list for food locations
+        # initiate an empty list to be packed with available possible food locations
         to_choose_from=[]
         
         for i in range(0,FRAME_WIDTH,10):
             for j in range(0,FRAME_HEIGHT,10):
-                # iterating over the whole frame, add a possible location for the food after excluding snake body parts and frame obstacles Under construction
+                # iterating over the whole frame, add a possible location for the food after excluding snake body parts and frame obstacles
                 if (i,j) not in self.obstacles and (i,j) not in self.snake.body:
                     to_choose_from.append((i,j))
                     
-        #assign a location for the food randomly
+        #assign a location for the food randomly from possible locations
         self.food=choice(to_choose_from)
         #self.food=(10*int(self.food[0]/10),10*int(self.food[1]/10))
 
@@ -72,6 +74,8 @@ class playground:
         """
         self.snake.orientation=orientation
 
+    def add_obstacles(self,list_of_obstacles):
+        self.obstacles+=list_of_obstacles
     
     def update(self):
         """ Updates the frame properies of the game."""
@@ -82,6 +86,8 @@ class playground:
             if self.snake.get_new_head()==self.food:
                 self.snake.grow()
                 self.generate_food()
+            elif self.snake.get_new_head() in (self.obstacles+self.snake.body):
+                self.hit_block=self.snake.get_new_head()
             else:
                 # move the snake
                 self.snake.move()
@@ -101,12 +107,18 @@ class playground:
         # draw each block in the snake's body
         for block in self.snake.body:
             self.game_display.blit(self.block_image, block)
+        for obs in self.obstacles:
+            self.game_display.fill((0,0,0),rect=(obs[0],obs[1],10,10))
 
         # draw the food portion
         self.game_display.blit(self.food_image,self.food)
         text=str(int((pygame.time.get_ticks()-self.start_time)/10)/100)
         font = pygame.font.SysFont('Consolas', 30)
         self.game_display.blit(font.render(text, True, (0, 0, 0)), (650, 570))
+
+        if self.hit_block:
+            pygame.draw.circle(self.game_display,(255,0,0),(self.hit_block[0]+5,self.hit_block[1]+5),5)
+            #self.game_display.fill((255,0,0),rect=(self.hit_block[0],self.hit_block[1],10,10))
     
     def play(self):
         """ This is where the game starts"""
@@ -116,6 +128,10 @@ class playground:
         # iterate indefinitly unless the user quits
         while True:
             # iterate for every event
+            if self.hit_block:
+                time.sleep(3)
+                pygame.quit()
+                return
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()

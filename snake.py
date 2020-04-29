@@ -70,3 +70,4 @@ class snake:
         self.body.append(new_head)
 
         self.speed+=SPEED_INCREMENT
+        
